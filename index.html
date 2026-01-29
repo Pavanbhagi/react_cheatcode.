@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React.js Cheat Sheet</title>
+  <style>
+    /* General styles */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #61dafb;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section {
+      background: white;
+      margin-bottom: 20px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      color: #0074D9;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #61dafb;
+      padding-bottom: 5px;
+    }
+
+    code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: monospace;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    .section-title {
+      font-weight: bold;
+      color: #0074D9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #222;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>React.js Cheat Sheet</h1>
+  <p>Quick reference guide for React (v15–v16 and hooks)</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>Components</h2>
+    <pre>
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
+class Hello extends Component {
+  render() {
+    return &lt;div&gt;Hello {this.props.name}&lt;/div&gt;;
+  }
+}
+
+ReactDOM.render(&lt;Hello name="John" /&gt;, document.getElementById('root'));
+    </pre>
+  </section>
+
+  <section>
+    <h2>Props & State</h2>
+    <ul>
+      <li><code>this.props</code> — access properties passed to the component</li>
+      <li><code>this.state</code> — dynamic internal state</li>
+      <li>Update state: <code>this.setState({ key: value })</code></li>
+      <li>With class fields (Babel):
+        <pre>state = { username: undefined };</pre>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Functional Components & Hooks</h2>
+    <pre>
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() =&gt; {
+    document.title = `You clicked ${count} times`;
+  }, [count]);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Click me&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+    </pre>
+  </section>
+
+  <section>
+    <h2>Lifecycle Methods</h2>
+    <ul>
+      <li>Mounting:
+        <code>constructor → render → componentDidMount</code></li>
+      <li>Updating:
+        <code>shouldComponentUpdate → render → componentDidUpdate</code></li>
+      <li>Unmounting:
+        <code>componentWillUnmount</code></li>
+      <li>Error handling:
+        <code>componentDidCatch</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>JSX Patterns</h2>
+    <ul>
+      <li>Inline styles: <code>&lt;div style={{ margin: 0 }} /&gt;</code></li>
+      <li>Conditional rendering:
+        <code>{`{show && <Component />}`}</code></li>
+      <li>Fragments: <code>&lt;Fragment&gt;&lt;/Fragment&gt;</code></li>
+      <li>Lists with keys:
+        <code>{`items.map(item => <li key={item.id}>{item.name}</li>)`}</code></li>
+      <li>Dangerously set inner HTML:
+        <code>&lt;div dangerouslySetInnerHTML={{__html: html}} /&gt;</code></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>PropTypes</h2>
+    <pre>
+import PropTypes from 'prop-types';
+
+MyComponent.propTypes = {
+  name: PropTypes.string.isRequired,
+  age: PropTypes.number,
+  callback: PropTypes.func
+};
+    </pre>
+  </section>
+
+</main>
+
+<footer>
+  React.js Cheat Sheet • 2026
+</footer>
+
+</body>
+</html>
